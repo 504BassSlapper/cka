@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: app-data
+spec:
+  storageClassName: ""
+  accessModes: 
+  - ReadOnlyMany
+  capacity: 
+    storage: 2Gi 
+  hostPath: 
+      # directory location on host
+      path: /srv/app-data
+      # this field is optional
+      type: Directory
+  claimRef:
+    name: app-data
