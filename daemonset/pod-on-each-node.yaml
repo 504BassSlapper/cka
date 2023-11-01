@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: redis
+  namespace: default
+  labels:
+    k8s-app: redis-db
+spec:
+  selector:
+    matchLabels:
+      name: redis
+  template:
+    metadata:
+      labels:
+        name: redis
+    spec:
+      tolerations:
+      - key: node-role.kubernetes.io/k8s-playground-control-plane
+        operator: Exists
+        effect: NoSchedule
+      containers:
+      - name: redis
+        image: redis
+  
