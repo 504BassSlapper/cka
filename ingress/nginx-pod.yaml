@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx
+  name: nginx
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    ports:
+    - containerPort: 80
+      name: nginx-port
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: busybox1
+  name: busybox1
+spec:
+  containers:
+  - image: busybox
+    name: busybox1
+    command:
+    - /bin/sh
+    - -c 
+    - sleep 3600
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: busybox2
+  name: busybox2
+spec:
+  containers:
+  - image: busybox
+    name: busybox2
+    command:
+    - /bin/sh
+    - -c 
+    - sleep 3600
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
