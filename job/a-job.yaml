@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  creationTimestamp: null
+  name: a-job
+spec:
+  backoffLimit: 4
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containers:
+      - image: nginx
+        name: a-job
+        command: 
+        - /bin/sh
+        - -c 
+        - abcdczsd
+        resources: {}
+      restartPolicy: Never
+status: {}
