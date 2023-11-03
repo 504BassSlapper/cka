@@ -15,7 +15,9 @@ spec:
         command: 
         - /bin/sh
         - -c 
-        - abcdczsd
+        # - abcdczsd
+        # exit code 1 
+        - sleep 1; exit 1;
         resources: {}
       restartPolicy: Never
 status: {}
