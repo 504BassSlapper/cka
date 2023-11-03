@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  creationTimestamp: null
+  name: c-job
+spec:
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+      name: c-job
+    spec:
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - image: bash
+            command:
+            - bash
+            - -c
+            - echo "sleeping "; sleep 30;
+            name: c-job
+            resources: {}
+          restartPolicy: OnFailure
+  schedule: '*/1 * * * *'
+status: {}
