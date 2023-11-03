@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  creationTimestamp: null
+  name: b-job
+spec:
+  parallelism: 4
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containers:
+      - image: bash
+        name: b-job
+        command: ["bash", "-c", "sleep $((RANDOM/1024+1)); exit $((RANDOM/16384))" ]
+
+        resources: {}
+      restartPolicy: Never
+status: {}
