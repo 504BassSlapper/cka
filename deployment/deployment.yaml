@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        command: ["nginx"]
+        args: ["-g" , "daemon off; worker_priority 10;"]
+        name: nginx
+        env:
+        - name: var1
+          value: "val1"
+        - name: var2
+          value: "val2"
+        resources: {}
+        envFrom:
+        - secretRef: 
+            name: passwords
+
+status: {}
+
+# or
+# kubectl set env deployment nginx --env var1=value1 --env var2=val2
