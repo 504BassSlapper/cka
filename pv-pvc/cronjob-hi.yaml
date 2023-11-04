@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  creationTimestamp: null
+  name: host-info-job
+spec:
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+      name: host-info-job
+    spec:
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          volumes:
+          - name: pvc-volume
+            persistentVolumeClaim: 
+              claimName: pvc-volume
+
+          containers:
+          - image: bash
+            name: host-info-job
+            volumeMounts:
+            - name: pvc-volume
+              mountPath: /tmp/vol
+
+            command:
+            - bash
+            - -c 
+            - hostname >> /tmp/vol/storage
+            resources: {}
+          restartPolicy: OnFailure
+  schedule: '*/2 * * * *'
+  successfulJobsHistoryLimit: 4
+status: {}
