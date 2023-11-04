@@ -17,6 +17,10 @@ spec:
       labels:
         app: nginx
     spec:
+      volumes:
+      - name: nginx-config-volume
+        configMap: 
+          name: config
       containers:
       - image: nginx
         command: ["nginx"]
@@ -28,6 +32,9 @@ spec:
         - name: var2
           value: "val2"
         resources: {}
+        volumeMounts:
+        - name: nginx-config-volume
+          mountPath: /etc/nginx/conf.d/
         envFrom:
         - secretRef: 
             name: passwords
