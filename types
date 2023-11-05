@@ -1,0 +1,7 @@
+component          |  type       | name
+dns                |  pod        | coredns
+etcd               |  static-pod  
+apiserver          |  static-pod 
+scheduler          |  static-pod 
+controller-manager |  static-pod
+kubelet            |  process  
