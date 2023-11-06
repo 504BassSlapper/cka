@@ -8,3 +8,5 @@ k get events --sort-by=metadata.creationTimestamp | tail -n 1
  k api-resources --namespaced -o name 
 #### print the number of roles in each ns 
 k get roles --all-namespaces --no-headers | awk '{print }'| uniq -c  
+#### print the number of roles in each ns 
+crictl inspect c6dad49e613f3 | jq '.info.runtimeType'
