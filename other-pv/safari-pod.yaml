@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: safari
+  name: safari
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: safari
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: safari
+    spec:
+      volumes:
+      - name: safari-pvc
+        persistentVolumeClaim:
+          claimName: safari-pvc
+      containers:
+      - image: httpd:2.4.41-alpine
+        name: httpd
+        volumeMounts:
+        - name: safari-pvc
+          mountPath: /tmp/safari-data
+        
+        resources: {}
+status: {}
