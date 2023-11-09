@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: foo-rs
+  namespace: foo-ns
+  labels:
+    foo: bar
+spec:
+  # modify replicas according to your case
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        tier: frontend
+      name: foo-rs
+    spec:
+      containers:
+      - name: nginx 
+        image: nginx

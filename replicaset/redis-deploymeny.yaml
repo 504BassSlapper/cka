@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: foo
+  name: foo-redis
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: foo-redis
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: foo
+    spec:
+      volumes:
+      - name: redis-vol
+        emptyDir: {}
+      nodeName: dev-worker
+      containers:
+      - image: redis:alpine
+        name: redis
+        ports:
+        - containerPort: 6379
+          name: redis-port
+          protocol: TCP
+
+        resources: 
+          requests:
+            memory: "64Mi"
+            cpu: "300m"
+status: {}
